@@ -1,5 +1,5 @@
 maintainer        "Enrique Garbi"
-maintainer_email  "Enrique Garbi"
+maintainer_email  "quique@enriquegarbi.com.ar"
 license           "Apache 2.0"
 description       "Installs and configures Sanity"
 version           "0.0.1"
