@@ -1,0 +1,663 @@
+###########################################################################
+#
+# IRCD configuration
+#
+###########################################################################
+
+IRCDModule "unreal32"
+
+EncModule "enc_none"
+
+# HostCoreModules <list> [RECOMMENDED]
+HostCoreModules "hs_help hs_on hs_off hs_group hs_list hs_set hs_setall hs_del hs_delall"
+
+# MemoCoreModules <list> [RECOMMENDED]
+MemoCoreModules "ms_send ms_cancel ms_list ms_read ms_del ms_set ms_info ms_rsend ms_check ms_staff ms_sendall ms_help"
+
+# HelpCoreModules <list> [RECOMMENDED]
+HelpCoreModules "he_help"
+
+# BotCoreModules <list> [RECOMMENDED]
+BotCoreModules "bs_help bs_botlist bs_assign bs_set bs_kick bs_badwords bs_act bs_info bs_say bs_unassign bs_bot bs_fantasy bs_fantasy_kick bs_fantasy_kickban bs_fantasy_owner bs_fantasy_seen bs_fantasy_unban"
+
+# OperCoreModules <list> [RECOMMENDED]
+OperCoreModules "os_help os_global os_stats os_oper os_admin os_staff os_mode os_kick os_clearmodes os_akill os_sgline os_sqline os_szline os_chanlist os_userlist os_logonnews os_randomnews os_opernews os_session os_noop os_jupe os_ignore os_set os_reload os_update os_restart os_quit os_shutdown os_defcon os_chankill os_svsnick os_oline os_umode os_modload os_modunload os_modlist os_modinfo"
+
+# NickCoreModules <list> [RECOMMENDED]
+NickCoreModules "ns_help ns_register ns_group ns_identify ns_access ns_set ns_saset ns_drop ns_recover ns_release ns_sendpass ns_ghost ns_alist ns_info ns_list ns_logout ns_status ns_update ns_getpass ns_getemail ns_forbid ns_suspend"
+
+# ChanCoreModules <list> [RECOMMENDED]
+ChanCoreModules "cs_help cs_register cs_identify cs_set cs_xop cs_access cs_akick cs_drop cs_sendpass cs_ban cs_clear cs_modes cs_getkey cs_invite cs_kick cs_list cs_logout cs_topic cs_info cs_getpass cs_forbid cs_suspend cs_status"
+
+RemoteServer    localhost 6667 "tAu9HeGd"
+
+# ServerName <name>  [REQUIRED]
+ServerName  "services.<%=node[:fqdn]%>"
+
+# ServerDesc <text>  [REQUIRED]
+ServerDesc  "Services for IRC Networks"
+
+# ServiceUser <usermask>  [REQUIRED]
+ServiceUser "services@<%=node[:fqdn]%>"
+
+# ...Name <nick> <string>  [REQUIRED except as noted below]
+NickServName    "NickServ"  "Nickname Server"
+ChanServName    "ChanServ"  "Channel Server"
+MemoServName    "MemoServ"  "Memo Server"
+BotServName     "BotServ"   "Bot Server"
+HelpServName    "HelpServ"  "Help Server"
+OperServName    "OperServ"  "Operator Server"
+GlobalName      "Global"    "Global Noticer"
+#DevNullName     "DevNull"   "/dev/null -- message sink"
+HostServName	"HostServ"  "vHost Server"
+
+# Services data filenames
+# PIDFile <filename>  [REQUIRED]
+PIDFile     services.pid
+
+# MOTDFile <filename>  [REQUIRED]
+MOTDFile    services.motd
+
+# ...DB <filename>  [REQUIRED]
+
+NickServDB  nick.db
+#PreNickServDB prenick.db
+ChanServDB  chan.db
+BotServDB   bot.db
+OperServDB  oper.db
+NewsDB      news.db
+ExceptionDB exception.db
+HostServDB  hosts.db
+
+# Network information
+
+# LogChannel <channel> [OPTIONAL]
+#LogChannel "#services"
+
+# LogBot [OPTIONAL]
+#LogBot
+
+# NetworkName <name> [REQUIRED]
+NetworkName "Nimbuzz"
+
+# NickLen [RECOMMENDED]
+NickLen 31
+
+# Basic functionality
+
+# UserKey1|2|3 <value> [RECOMMENDED]
+
+UserKey1 9866235
+UserKey2 8362013
+UserKey3 2362899
+
+# NoBackupOkay  [DISCOURAGED]
+
+#NoBackupOkay
+
+# StrictPasswords  [RECOMMENDED]
+
+StrictPasswords
+
+# BadPassLimit <count>  [RECOMMENDED]
+
+BadPassLimit    5
+
+# BadPassTimeout <time>  [OPTIONAL]
+
+BadPassTimeout  1h
+
+# UpdateTimeout <time>  [REQUIRED]
+
+UpdateTimeout   5m
+
+# ExpireTimeout <time>  [REQUIRED]
+
+ExpireTimeout   30m
+
+# ReadTimeout <time>  [REQUIRED]
+
+ReadTimeout 5s
+
+# WarningTimeout <time>  [REQUIRED]
+
+WarningTimeout  4h
+
+# TimeoutCheck <time>  [REQUIRED]
+
+TimeoutCheck    3s
+
+# KeepLogs <days> [RECOMMENDED]
+
+KeepLogs 7
+
+# KeepBackups <days> [RECOMMENDED]
+
+KeepBackups 3
+
+# ForceForbidReason [OPTIONAL]
+
+ForceForbidReason
+
+# UsePrivmsg [OPTIONAL]
+
+#UsePrivmsg
+
+# UseStrictPrivMsg [OPTIONAL]
+
+#UseStrictPrivMsg
+
+# LogUsers [OPTIONAL]
+
+#LogUsers
+
+# HideStatsO [OPTIONAL]
+
+#HideStatsO
+
+# Mail-related options
+
+# UseMail [OPTIONAL]
+
+UseMail
+
+# SendMailPath <path> [REQUIRED]
+
+SendMailPath "/usr/sbin/sendmail -t"
+
+# SendFrom <e-mail> [REQUIRED]
+
+SendFrom services@azure.example.com
+
+# RestrictMail [OPTIONAL]
+
+RestrictMail
+
+# MailDelay <time> [RECOMMENDED]
+
+MailDelay 5m
+
+# NickServ configuration
+
+# NSForceEmail [RECOMMENDED]
+
+NSForceEmail
+
+NSDefNone
+
+# NSDefLanguage <language-number> [REQUIRED]
+
+NSDefLanguage 1
+
+# NSRegDelay <time>  [RECOMMENDED]
+
+NSRegDelay  30s
+
+# NSResendDelay <time>  [RECOMMENDED]
+
+NSResendDelay  90s
+
+# NSExpire <time>  [RECOMMENDED]
+
+NSExpire    21d
+
+# NSAccessMax <count>  [REQUIRED]
+
+NSAccessMax 32
+
+# NSEnforcerUser <user>[@<host>]  [REQUIRED]
+
+NSEnforcerUser  enforcer@example.com
+
+# NSReleaseTimeout <time>  [REQUIRED]
+
+NSReleaseTimeout 1m
+
+# NSListMax <count>  [REQUIRED]
+#     Specifies the maximum number of nicks to be returned for a NickServ
+#     LIST command.
+
+NSListMax   50
+
+# NSGuestNickPrefix <value>  [REQUIRED]
+
+NSGuestNickPrefix   "Guest"
+
+# NSSecureAdmins  [RECOMMENDED]
+
+NSSecureAdmins
+
+# NSStrictPrivileges [RECOMMENDED]
+
+NSStrictPrivileges
+
+# ChanServ configuration
+
+# CSDef...  [OPTIONAL]
+
+#CSDefNone
+
+# CSMaxReg <count>  [RECOMMENDED]
+
+CSMaxReg    20
+
+# CSExpire <time>  [RECOMMENDED]
+
+CSExpire    14d
+
+# CSDefBantype <bantype> [REQUIRED]
+# 0: ban in the form *!user@host
+# 1: ban in the form *!*user@host
+# 2: ban in the form *!*@host
+# 3: ban in the form *!*user@*.domain
+
+CSDefBantype 2
+
+# CSAccessMax <count>  [REQUIRED]
+
+CSAccessMax 1024
+
+# CSAutokickMax <count>  [REQUIRED]
+
+CSAutokickMax   32
+
+# CSAutokickReason <text>  [REQUIRED]
+
+CSAutokickReason "User has been banned from the channel"
+
+# CSInhabit <time>  [REQUIRED]
+
+CSInhabit   15s
+
+# CSListMax <count>  [REQUIRED]
+
+CSListMax   50
+
+# MemoServ configuration
+
+# MSMaxMemos <count>  [RECOMMENDED]
+
+MSMaxMemos  20
+
+# MSSendDelay <time>  [RECOMMENDED]
+#     Sets the delay between consecutive uses of the MemoServ SEND command.
+#     This can help prevent spam as well as denial-of-service attacks from
+#     sending large numbers of memos and filling up disk space (and
+#     memory).  A 3-second wait means a maximum average of 150 bytes of
+#     memo per second per user under the current IRC protocol.
+
+MSSendDelay 3s
+
+# MSNotifyAll  [OPTIONAL]
+#     Should we notify all appropriate users of a new memo?  This applies
+#     in cases where a memo is sent to a nick which is in the group of
+#     another nick. Note that, unlike before, it is currently often more
+#     efficient to enable this.
+
+MSNotifyAll
+
+# MSMemoReceipt    [OPTIONAL]
+# Allow the use of memo receipts for the following groups:
+# 1 - Opers Only
+# 2 - Everybody
+#
+#MSMemoReceipt 1
+
+###########################################################################
+#
+# BotServ configuration
+#
+###########################################################################
+
+# BSDef...  [OPTIONAL]
+#     Sets the default options for newly registered channels.  Note that
+#     changing these options will have no effect on channels which are 
+#     already registered.
+
+#BSDefDontKickOps
+#BSDefDontKickVoices
+BSDefGreet
+BSDefFantasy
+BSDefSymbiosis
+
+# BSMinUsers <count> [REQUIRED]
+#    Minimum number of users there must be in a channel before the
+#    bot joins it. The best value for this setting is 1 or 2. This
+#    cannot be 0, otherwise topic retention and mode lock and such
+#    other things won't work.
+
+BSMinUsers 1
+
+# BSBadWordsMax <count> [REQUIRED]
+#    Maximum number of entries a single bad words list can have.
+#    Setting it too high can reduce performances slightly.
+
+BSBadWordsMax 32
+
+# BSKeepData <time> [REQUIRED]
+#    Amount of time data for a user that is used by BotServ is 
+#    valid. If the data exceeds this time, it is reset or deleted
+#    depending the case. Do not set it too high otherwise your resources
+#    will be slightly affected.
+
+BSKeepData 10m
+
+# BSSmartJoin [OPTIONAL]
+#    The bot is currently not affected by any modes or bans when he
+#    tries to join a channel. But some people may want to make it
+#    act like a real bot, that is, for example, remove all bans
+#    that affect the bot before joining the channel, remove a
+#    ban that affects the bot set by an user when it is on the
+#    channel, and so on. Since it consumes a bit more CPU time,
+#    you should not comment it out on larger networks.
+
+# BSSmartJoin
+
+# BSGentleBWReason [OPTIONAL]
+#    This option will make the bot use a kick reason that does not retake
+#    the word when it is kicking the bot. This is especially useful if
+#    you have young people on your network.
+
+BSGentleBWReason
+
+# BSCaseSensitive [OPTIONAL]
+#    This option will make botserv use cAsE sEnSiTiVe checking for badwords
+
+# BSCaseSensitive
+
+# BSFantasyCharacter [OPTIONAL]
+#    This option allows you to change the default prefix for fantasy
+#    commands in channels. This character will have to be prepended to
+#    all fantasy commands. If you choose "!", fantasy commands will, for
+#    example, be "!kick", "!op", etc. If left out, the default fantasy
+#    character will be "!".
+
+# BSFantasyCharacter "!"
+
+###########################################################################
+#
+# HostServ configuration
+#
+###########################################################################
+
+# HostSetters <nicks>  [DISCOURAGED]
+#    Specifies the nicks of NON-OPERS allowed to Set/Remove vHosts using
+#    HostServ.  Can be re-loaded with /msg operserv reload
+#    You can specify more than one nick by separating each one by a space.
+#
+#    Make sure you insert the correct nick(s) here..
+
+#HostSetters "rob dengel certus"
+
+###########################################################################
+#
+# OperServ configuration
+#
+###########################################################################
+
+# ServicesRoot <nicks>  [REQUIRED]
+#    Specifies the Services "super-users".  The super-users, or "roots" as in
+#    Unix terminology, are the only users who can add or delete Services
+#    admins.
+#
+#    You can specify more than one nick by separating each one by a space.
+#
+#    This is commented out by default; make sure you insert the correct
+#    nick before uncommenting it.
+
+ServicesRoot   "gaurav"
+
+LogMaxUsers
+
+AutoKillExpiry  30d
+ChanKillExpiry  30d
+SGLineExpiry    30d
+SQLineExpiry    30d
+SZLineExpiry    30d
+
+# DisableRaw [RECOMMENDED]
+
+DisableRaw
+
+# WallOS...  [OPTIONAL]
+
+WallOSGlobal
+WallOSMode
+WallOSClearmodes
+WallOSKick
+WallOSAkill
+WallOSSGLine
+WallOSSQLine
+WallOSSZLine
+WallOSNoOp
+WallOSJupe
+WallOSRaw
+
+# Wall...Expire  [OPTIONAL]
+#     Causes Services to send a WALLOPS/GLOBOPS whenever respectively 
+#     an AKILL, an SGLINE, an SQLINE, an SZLINE and a session limit 
+#     exception expires.
+
+#WallAkillExpire
+#WallSGLineExpire
+#WallSQLineExpire
+#WallSZLineExpire
+#WallExceptionExpire
+
+# WallGetpass  [OPTIONAL]
+#     Causes Services to send a WALLOPS/GLOBOPS on use of the NickServ or
+#     ChanServ GETPASS command.
+
+WallGetpass
+
+# WallSetpass  [OPTIONAL]
+#     Causes Services to send a WALLOPS/GLOBOPS whenever a Services admin
+#     sets a password for a nickname or channel (s)he does not normally have
+#     privileges to set.
+
+WallSetpass
+
+# WallForbid [OPTIONAL]
+#     Causes Services to send a WALLOPS/GLOBOPS on use of the NickServ or
+#     ChanServ FORBID command.
+
+WallForbid
+
+# WallDrop [OPTIONAL]   
+#     Causes Services to send a WALLOPS/GLOBOPS whenever a Services admin
+#     drops a nickname or channel (s)he does not normally have
+#     privileges to drop.
+
+WallDrop
+
+# LimitSessions  [OPTIONAL]
+#     Enables session limiting. Session limiting prevents users from 
+#     connecting more than a certain number of times from the same host at the
+#     same time - thus preventing most types of cloning. Once a host reaches 
+#     it's session limit, all clients attempting to connect from that host 
+#     will be killed. Exceptions to the default session limit can be defined
+#     via the exception list. It should be noted that session limiting, along
+#     with a large exception list, can degrade services' performance.
+#     See the source and comments in sessions.c and the online help for more
+#     information about session limiting.
+#
+#     NOTE:  This option is not available when STREAMLINED is defined in
+#     the Makefile.
+
+#LimitSessions
+
+# DefSessionLimit <limit>  [REQUIRED]
+#     Default session limit per host. Once a host reaches it's session limit,
+#     all clients attempting to connect from that host will be killed. A value
+#     of zero means an unlimited session limit.
+
+DefSessionLimit 60
+
+# MaxSessionLimit <limit>  [REQUIRED]
+#     The maximum session limit that may be set for a host in an exception.
+
+MaxSessionLimit 100
+
+# ExceptionExpiry <time>  [REQUIRED]
+#     Sets the default expiry time for exceptions.
+
+ExceptionExpiry 1d
+
+# SessionLimitExceeded <message>  [OPTIONAL]
+
+SessionLimitExceeded "SRV says The session limit for your host %s has been exceeded."
+
+# SessionLimitDetailsLoc <message>  [OPTIONAL]
+
+#SessionLimitDetailsLoc "Please visit http://your.website.url/ for more information about session limits."
+
+# MaxSessionKill <number> [OPTIONAL]
+
+MaxSessionKill 15
+
+# SessionAutoKillExpiry <time> [OPTIONAL]
+
+SessionAutoKillExpiry 30m
+
+
+# AddAkiller [OPTIONAL]
+
+AddAkiller
+
+# OSOpersOnly [RECOMMENDED]
+
+OSOpersOnly
+
+
+###########################################################################
+#
+# DefCon configuration
+#
+###########################################################################
+
+# DefConLevel <level> [OPTIONAL]
+#     Default defcon level (1-5) to use when starting services up, level 5
+#     instructs services to run as normal.
+
+#DefConLevel 5
+
+# DefCon1-4 <numeric> [REQUIRED if Defcon is activated]
+#     These numercics determine which of the following operations take place
+#     at each level, the correct numeric can be found by adding together the
+#     number for each restriction you wish to place at a level.
+#     No new channel registrations			1
+#     No New Nick Registrations				2
+#     No MLOCK changes 					4
+#     Force Chan Mode					8
+#     Use Reduced Session Limit				16
+#     KILL any new clients trying to connect		32
+#     Services will ignore everyone but opers		64
+#     Services will silently ignore everyone but opers	128
+#     AKILL all new clients trying to connect		256
+#     No new memos sent to block memoserv attacks	512
+
+#DefCon4 23
+#     No channel reg + No Nick Reg + No MLOCK changes + Use Reduced Session Limit
+#           1        +      2      +         4        +            16
+
+#DefCon3 31
+#     As DefCon4 + Services will Force Chan Mode's on channels
+#          23    +                     8
+
+#DefCon2 159
+#     As DefCon3 + Services will silently ignore everyone but opers
+#          31    +                    128
+
+#DefCon1 415
+#     As DefCon2 + AKILL all new clients trying to connect
+#          159   +                  256
+
+
+# DefConSessionLimit <limit> [REQUIRED if DefCon is activated]
+#     New session limit to use when a defcon level is using "reduced"
+#     session limiting.
+#     NOTE: When using DefCon this value needs to be defined
+#DefConSessionLimit 2
+
+# DefConAkillExpire <time> [REQUIRED if DefCon is activated]
+#     Length of time to add the AKILL for when DEFCON is preventing
+#     all new clients from connecting to the network
+#
+#     NOTE: As with all expire times, the expirey check will only be
+#     carried out once every "ExpireTimeout" so if this setting is
+#     30m the the akill could last for 30m regardless of this setting.
+#
+#     NOTE: When using DefCon this value needs to be defined
+#DefConAkillExpire 5m
+
+# DefConChanModes <modes> [REQUIRED if DefCon is activated]
+#     The channel modes to set on all channel's when the DefCon channel
+#     mode system is in use.
+#
+#     NOTE: Choose these modes carefully, because when defcon switches to
+#     a level which does NOT have the mode setting selected, services will
+#     set the reverse on all channel's, e.g. if this setting is +RN
+#     when defcon is used all channel's will be set to +RN, when
+#     defcon is removed, channels will all be set to -RN. You don't
+#     want to set this to +k for example because when defcon is removed all
+#     channels will -k.
+#     NOTE: mlock'ed modes will not be lost
+#DefConChanModes "+R"
+
+# DefConTimeOut <time> [OPTIONAL]
+#     This value can be used to automatically return the network to
+#     defcon 5 after the specified time period - just in case any opers
+#     forget to remove a defcon setting.
+#DefConTimeOut 15m
+
+# GlobalOnDefcon [OPTIONAL]
+#
+#     Setting this directive will make Services send a global message on
+#     Defcon Level changes.
+#GlobalOnDefcon
+
+# GlobalOnDefconMore [OPTIONAL]
+#
+#     Setting this directive will make Services send a global message on
+#     Defcon Level changes. Uncommenting this will allow you to send along
+#     with the new level, the DefconMessage.
+#GlobalOnDefconMore
+
+#DefconMessage "Put your message to send your users here. Dont forget to uncomment GlobalOnDefconMore"
+
+# DefConOffMessage [OPTIONAL]
+#
+#     If this is defined, it will be used in place of GlobalOnDefcon and
+#     GlobalOnDefconMore when defcon is returned to level 5
+#DefConOffMessage "Services are now back to normal, sorry for any inconvenience"
+
+# DefConAkillReason <text> [REQUIRED if DefCon is activated]
+#
+#     When using DEFCON this setting will be used when any clients are killed
+#     or akilled from the network by defcon
+#
+#DefConAkillReason "This network is currently not accepting connections, please try again later"
+
+# Module configuration
+# ModuleAutoload [OPTIONAL]
+#ModuleAutoload "hs_moo ircd_defizzer"
+
+# ModuleDelayedAutoload [OPTIONAL]
+ModuleDelayedAutoload "cs_appendtopic cs_enforce ns_maxemail os_info hs_request"
+
+# Module specific configuration
+# NSEmailMax [OPTIONAL]
+#NSEmailMax 1
+
+# OSInfoDBName [OPTIONAL]
+#OSInfoDBName "os_info.db"
+
+# HSRequestMemo... [OPTIONAL]
+#HSRequestMemoUser
+#HSRequestMemoOper
+#HSRequestMemoSetters
+
+# HSRequestDBName [OPTIONAL]
+#HSRequestDBName "hs_request.db"
+
+#EOF

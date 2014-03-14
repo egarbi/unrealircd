@@ -1,0 +1,37 @@
+<VirtualHost *:80>
+  	ServerAdmin     <%= node['irc']['sysadmin_email'] %>
+  	ServerName      munin.example.com
+  	ServerAlias     munin munin.<%= node.chef_environment =~ /_default/ ? "default" : node.chef_environment %>.<%= @public_domain %>
+	<IfModule mod_rewrite.c>
+               RewriteEngine on
+                RewriteCond %{REQUEST_URI} !^/server-status$
+                RewriteCond %{HTTPS} !^on$ [NC]
+               RewriteRule ^/(.*)$ https://<%= node['irc']['vhost_url'] %>%{REQUEST_URI}  [R]
+       </IfModule>
+</VirtualHost>
+
+<VirtualHost *:443>
+        ServerAdmin     <%= node['irc']['sysadmin_email'] %>
+        ServerName      munin.example.com
+        ServerAlias     munin munin.<%= node.chef_environment =~ /_default/ ? "default" : node.chef_environment %>.<%= @public_domain %>
+
+        SSLEngine On
+        SSLCertificateFile <%= node['apache']['dir']%>/ssl/example.crt
+        SSLCertificateKeyFile <%= node['apache']['dir']%>/ssl/example.key
+  	# Enable this for template generation
+  	DocumentRoot <%=@docroot%>
+  
+	CustomLog       <%= node['apache']['log_dir'] %>/irc_access.log combined
+  	ErrorLog        <%= node['apache']['log_dir'] %>/irc_error.log
+
+
+	<Location / >
+        	AuthName "IRCLog Access"
+        	AuthType basic
+        	AuthBasicProvider ldap
+        	AuthLDAPURL <%= @ldap_url %>/ou=users,dc=example,dc=com?uid?one?(objectClass=person)
+        	require valid-user
+
+	</Location>
+</VirtualHost>
+
