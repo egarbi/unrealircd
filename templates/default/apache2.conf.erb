@@ -1,7 +1,7 @@
 <VirtualHost *:80>
   	ServerAdmin     <%= node['irc']['sysadmin_email'] %>
-  	ServerName      munin.example.com
-  	ServerAlias     munin munin.<%= node.chef_environment =~ /_default/ ? "default" : node.chef_environment %>.<%= @public_domain %>
+  	ServerName      irc.example.com
+  	ServerAlias     irc irc.<%= node.chef_environment =~ /_default/ ? "default" : node.chef_environment %>.<%= @public_domain %>
 	<IfModule mod_rewrite.c>
                RewriteEngine on
                 RewriteCond %{REQUEST_URI} !^/server-status$
@@ -12,8 +12,8 @@
 
 <VirtualHost *:443>
         ServerAdmin     <%= node['irc']['sysadmin_email'] %>
-        ServerName      munin.example.com
-        ServerAlias     munin munin.<%= node.chef_environment =~ /_default/ ? "default" : node.chef_environment %>.<%= @public_domain %>
+        ServerName      irc.example.com
+        ServerAlias     irc irc.<%= node.chef_environment =~ /_default/ ? "default" : node.chef_environment %>.<%= @public_domain %>
 
         SSLEngine On
         SSLCertificateFile <%= node['apache']['dir']%>/ssl/example.crt

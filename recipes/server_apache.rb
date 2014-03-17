@@ -25,7 +25,7 @@ end
 # Set variable public_domain with example.com or whatever, Not used yet
 if node[:public_domain]
   case node.chef_environment
-  when "Nimbuzz"
+  when "Example"
     public_domain = node[:public_domain]
   else
     public_domain = "#{node.chef_environment}.#{node[:public_domain]}"

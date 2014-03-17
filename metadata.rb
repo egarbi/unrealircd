@@ -1,5 +1,5 @@
-maintainer        "Gaurav Gupta"
-maintainer_email  "gaurav@nimbuzz.com"
+maintainer        "Enrique Garbi"
+maintainer_email  "garbi@example.com.ar"
 license           "Apache 2.0"
 description       "Installs and configures Sanity"
 version           "0.0.1"

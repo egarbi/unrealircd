@@ -58,7 +58,7 @@ include "spamfilter.conf";
 me
 {
 	name "<%= node[:fqdn] %>";
-	info "Nimbuzz IRC Server";
+	info "Example IRC Server";
 	numeric 1;
 };
 
@@ -75,9 +75,9 @@ me
  * };
  */
 admin {
-	"Gaurav Gupta";
-	"gaurav";
-	"gaurav@example.com";
+	"Enrique Gaurav";
+	"garbi";
+	"garbi@example.com";
 };
 
 /*
@@ -142,164 +142,6 @@ allow {
 	maxperip 5;
 };
 
-# Cordoba wired
-allow {
-	ip             192.168.30.*;
-	hostname	*.example.com;
-	class           clients;
-	password "jAg4pTPJ2S";
-	maxperip 300;
-	options {
-		ssl;
-	};
-};
-
-# Braingate on NL
-allow {
-        ip             192.168.10.*;
-	hostname	*.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-# Braingate Wireless on NL
-allow {
-        ip             192.168.20.*;
-	hostname	*.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-# Wireless on CBA
-allow {
-        ip             192.168.35.*;
-	hostname	*.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-# Allowing vpn Nimbuzz Client
-allow {
-	ip             192.168.254.*;
-	hostname	*.example.com;
-	class           clients-vpn;
-	password "jAg4pTPJ2S";
-	maxperip 30;
-	options {
-		ssl;
-	};
-};
-
-# Allowing vpn Nimbuzz Client
-allow {
-	ip             192.168.11.*;
-	hostname	*.example.com;
-	class           clients-vpn;
-	password "jAg4pTPJ2S";
-	maxperip 30;
-	options {
-		ssl;
-	};
-};
-
-# India Office
-allow {
-        ip             192.168.57.*;
-    hostname    *.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-# India Office
-allow {
-        ip             192.168.56.*;
-    hostname    *.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-# India Office
-allow {
-        ip             192.168.52.*;
-    hostname    *.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-
-# India Office
-allow {
-        ip             192.168.53.*;
-    hostname    *.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-# India Office wireless
-allow {
-        ip             192.168.59.*;
-    hostname    *.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-# India Office wireless
-allow {
-        ip             192.168.58.*;
-    hostname    *.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-# AMS5 wireless
-allow {
-        ip             10.11.0.*;
-    hostname    *.example.com;
-        class           clients;
-        password "jAg4pTPJ2S";
-        maxperip 30;
-        options {
-                ssl;
-        };
-};
-
-
-
 /*
  * NEW: allow channel {} 
  * OLD: chrestrict 
@@ -343,12 +185,12 @@ allow {
  * [HIGHLY recommended to read]
  */
 
-oper gaurav {
+oper garbi {
 	class           clients;
 	from {
-		userhost gaurav@*;
+		userhost garbi@*;
 	};
-	password "gaurav";
+	password "garbi";
 	flags
 	{
 		netadmin;
@@ -807,7 +649,7 @@ ban realname {
 
 except ban {
 	/* don't ban stskeeps */
-	mask           gaurav@*;
+	mask           garbi@*;
 };
 
 /*
@@ -872,7 +714,7 @@ deny channel {
 
 /* Network configuration */
 set {
-	network-name 		"NimbuzzIRC";
+	network-name 		"ExampleIRC";
 	default-server 		"<%= node[:fqdn]%>";
 	services-server 	"services.<%= node[:fqdn]%>";
 	help-channel 		"#NIrc";
@@ -906,7 +748,7 @@ set {
 /* Server specific configuration */
 
 set {
-	kline-address "gaurav@example.com.ar";
+	kline-address "garbi@example.com.ar";
 	modes-on-connect "+ixwG";
 	modes-on-oper	 "+xwgs";
 	#oper-auto-join "";
